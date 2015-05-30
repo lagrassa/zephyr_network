@@ -4,8 +4,8 @@ z = nx.Graph()
 
 
 
-def alpha_only(c):
-    if str(c).isalpha() and c != ' ' and not str(c).isdigit():
+def valid_character_only(c):
+    if (str(c).isalpha() and c != ' ' and not str(c).isdigit()) or c == "_":
         return str(c)
     return ''
 
@@ -17,7 +17,7 @@ def get_writer(last_slash_index,line):
     except IndexError:
         print line
     while character != ':' and index < len(line)-1:  #checks for timestamp
-        writer+=alpha_only(character)
+        writer+=valid_character_only(character)
         index +=1
         character = line[index]
     return writer,index
@@ -38,7 +38,7 @@ for line in f:
         if line.count('/')>2:
             line = remove_zsig(line)
         classname_slash_index = line.index('/')
-        classname = ''.join([alpha_only(line[c]) for c in range(classname_slash_index) ])
+        classname = ''.join([valid_character_only(line[c]) for c in range(classname_slash_index) ])
         if classname not in classes_to_subscribers:
             classes_to_subscribers[classname] = []
         #finds the name of the person writing to the class
