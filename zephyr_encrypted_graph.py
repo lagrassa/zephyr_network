@@ -32,7 +32,7 @@ def remove_zsig(line):
 
 encryption_dictionary = {}
 def encrypt(classname):
-    N = 8
+    N = 3
     encryption_dictionary[classname] = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
 
 f = open('zephyrs.txt', 'r')
@@ -54,6 +54,6 @@ name_to_friends = classes_to_subscribers
 for friend in name_to_friends.keys():
     for other_friend in name_to_friends[friend]:
         z.add_edge(encryption_dictionary[friend],encryption_dictionary[other_friend])
-
+print z.nodes()
 nx.draw(z)
 plt.show()
