@@ -51,7 +51,6 @@ for line in f:
             classes_to_subscribers[classname].append(writer)
 
 name_to_friends = classes_to_subscribers 
-print name_to_friends
 for friend in name_to_friends.keys():
     for other_friend in name_to_friends[friend]:
         z.add_edge(friend,other_friend)
