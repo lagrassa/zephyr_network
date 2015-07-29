@@ -27,13 +27,24 @@ def remove_zsig(line):
     right_parenthesis_index = line.index(')')
     line = line[:left_parenthesis_index]+line[right_parenthesis_index:]
     return line
-
+def non_ascii_class(classname):
+    ascii_name = ''
+    for letter in classname:
+        try:
+            ascii_name+=letter.encode('ascii')
+        except:
+            continue
 
 f = open('zephyrs.txt', 'r')
 classes_to_subscribers = {}
 
 for line in f:
     classname = line[5:19]
+    try:
+        classname = classname.encode('ascii')
+    except:
+        classname = non_ascii_class(classname)
+
     if classname not in classes_to_subscribers:
         classes_to_subscribers[classname] = []
     #finds the name of the person writing to the class
