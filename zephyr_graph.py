@@ -23,9 +23,9 @@ z = nx.Graph()
 #    return writer,index
 
 def remove_zsig(line):
-    right_parenthesis_index = line.index('(')
-    left_parenthesis_index = line.index(')')
-    line = line[:right_parenthesis_index]+line[left_parenthesis_index:]
+    left_parenthesis_index = line.index('(')
+    right_parenthesis_index = line.index(')')
+    line = line[:left_parenthesis_index]+line[right_parenthesis_index:]
     return line
 
 
@@ -48,3 +48,4 @@ for friend in name_to_friends.keys():
 
 nx.draw(z)
 plt.show()
+f.close()
